@@ -3,13 +3,9 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
 import LoginPage from './pages/LoginPage';
 import ProductManagementPage from './pages/ProductManagementPage';
 import SaleOrdersPage from './pages/SaleOrdersPage';
-import { AuthProvider, useAuth } from './AuthContext';
 import NavBar from './components/NavBar';
-
-const ProtectedRoute = ({ children }) => {
-  const { isAuthenticated } = useAuth();
-  return isAuthenticated ? children : <Navigate to="/login" />;
-};
+import { AuthProvider } from './AuthContext';
+import ProtectedRoute from './components/ProtectedRoute';
 
 const App = () => {
   return (

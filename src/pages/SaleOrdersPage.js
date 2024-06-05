@@ -3,6 +3,7 @@ import { Container, Table, Button, Modal } from 'react-bootstrap';
 import SaleOrderForm from '../components/SaleOrderForm';
 import EditSaleOrderForm from '../components/EditSaleOrderForm';
 import { api } from '../services/mockApi';
+import DarkModeToggle from '../components/DarkModeToggle';
 
 const SaleOrdersPage = () => {
   const [saleOrders, setSaleOrders] = useState([]);
@@ -32,6 +33,7 @@ const SaleOrdersPage = () => {
 
   return (
     <Container>
+     
       <h1>Sale Orders Management</h1>
       <SaleOrderForm onSubmit={handleAddSaleOrder} />
       <Table striped bordered hover className="mt-3">

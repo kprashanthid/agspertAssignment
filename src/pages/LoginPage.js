@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { useForm } from 'react-hook-form';
 import { Form, Button, Container, Row, Col } from 'react-bootstrap';
 import { useAuth } from '../AuthContext';
@@ -19,7 +20,9 @@ const LoginPage = () => {
   };
 
   return (
+  
     <Container className="mt-5">
+    
       <Row className="justify-content-md-center">
         <Col md={4}>
           <h1>Login</h1>

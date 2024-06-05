@@ -1,55 +1,35 @@
-let products = [];
-let saleOrders = [];
-let nextProductId = 1;
-let nextSaleOrderId = 1;
+const products = [
+  { id: 1, productName: "Product1", productPrice: 100, productDescription: "Description1" },
+  { id: 2, productName: "Product2", productPrice: 200, productDescription: "Description2" },
+  // Add more mock products as needed
+];
+
+const saleOrders = [
+  { id: 1, orderName: "Order1", orderPrice: 150, orderDescription: "Order Description1" },
+  { id: 2, orderName: "Order2", orderPrice: 250, orderDescription: "Order Description2" },
+  // Add more mock sale orders as needed
+];
 
 export const api = {
-  login: (username, password) => {
-    if (username === 'admin' && password === 'password') {
-      return { token: 'fake-token', username };
-    }
-    throw new Error('Invalid username or password');
-  },
-
-  getProducts: () => {
-    return [...products];
-  },
-
-  addProduct: (product) => {
-    const newProduct = { id: nextProductId++, ...product };
-    products.push(newProduct);
-    return newProduct;
-  },
-
+  getProducts: () => products,
+  addProduct: (product) => products.push({ ...product, id: products.length + 1 }),
   updateProduct: (id, updatedProduct) => {
     const index = products.findIndex((p) => p.id === id);
-    if (index === -1) throw new Error('Product not found');
-    products[index] = { id, ...updatedProduct };
-    return products[index];
+    if (index !== -1) products[index] = { ...updatedProduct, id };
   },
-
   deleteProduct: (id) => {
-    products = products.filter((p) => p.id !== id);
+    const index = products.findIndex((p) => p.id === id);
+    if (index !== -1) products.splice(index, 1);
   },
 
-  getSaleOrders: () => {
-    return [...saleOrders];
-  },
-
-  addSaleOrder: (saleOrder) => {
-    const newSaleOrder = { id: nextSaleOrderId++, ...saleOrder };
-    saleOrders.push(newSaleOrder);
-    return newSaleOrder;
-  },
-
+  getSaleOrders: () => saleOrders,
+  addSaleOrder: (saleOrder) => saleOrders.push({ ...saleOrder, id: saleOrders.length + 1 }),
   updateSaleOrder: (id, updatedSaleOrder) => {
-    const index = saleOrders.findIndex((o) => o.id === id);
-    if (index === -1) throw new Error('Sale Order not found');
-    saleOrders[index] = { id, ...updatedSaleOrder };
-    return saleOrders[index];
+    const index = saleOrders.findIndex((so) => so.id === id);
+    if (index !== -1) saleOrders[index] = { ...updatedSaleOrder, id };
   },
-
   deleteSaleOrder: (id) => {
-    saleOrders = saleOrders.filter((o) => o.id !== id);
+    const index = saleOrders.findIndex((so) => so.id === id);
+    if (index !== -1) saleOrders.splice(index, 1);
   },
 };

@@ -3,6 +3,7 @@ import { Container, Table, Button, Modal } from 'react-bootstrap';
 import ProductForm from '../components/ProductForm';
 import EditProductForm from '../components/EditProductForm';
 import { api } from '../services/mockApi';
+import DarkModeToggle from '../components/DarkModeToggle';
 
 const ProductManagementPage = () => {
   const [products, setProducts] = useState([]);
@@ -32,6 +33,7 @@ const ProductManagementPage = () => {
 
   return (
     <Container>
+     
       <h1>Product Management</h1>
       <ProductForm onSubmit={handleAddProduct} />
       <Table striped bordered hover className="mt-3">

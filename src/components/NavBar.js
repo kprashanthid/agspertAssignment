@@ -1,7 +1,8 @@
 import React from 'react';
-import { Navbar, Nav, Container } from 'react-bootstrap';
+import { Navbar, Nav, Container, Button } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 import { useAuth } from '../AuthContext';
+import DarkModeToggle from './DarkModeToggle';
 
 const NavBar = () => {
   const { isAuthenticated, logout } = useAuth();
@@ -9,23 +10,26 @@ const NavBar = () => {
   return (
     <Navbar bg="light" expand="lg">
       <Container>
-        <LinkContainer to="/products">
-          <Navbar.Brand>Product Management</Navbar.Brand>
+        <LinkContainer to="/">
+          <Navbar.Brand className='ch'>Sale Order Management</Navbar.Brand>
         </LinkContainer>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
-            <LinkContainer to="/products">
-              <Nav.Link>Products</Nav.Link>
-            </LinkContainer>
-            <LinkContainer to="/orders">
-              <Nav.Link>Orders</Nav.Link>
-            </LinkContainer>
+            {isAuthenticated && (
+              <>
+                <LinkContainer  to="/products">
+                  <Nav.Link className='ch'>Products</Nav.Link>
+                </LinkContainer>
+                <LinkContainer to="/orders">
+                  <Nav.Link className='ch'>Orders</Nav.Link>
+                </LinkContainer>
+              </>
+            )}
           </Nav>
+          <DarkModeToggle />
           {isAuthenticated && (
-            <Nav className="ml-auto">
-              <Nav.Link onClick={logout}>Logout</Nav.Link>
-            </Nav>
+            <Button variant="outline-danger" onClick={logout}>Logout</Button>
           )}
         </Navbar.Collapse>
       </Container>
